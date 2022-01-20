@@ -29,6 +29,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        print("sceneDidBecomeActive")
+
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
@@ -39,12 +41,58 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
+        print("sceneWillEnterForeground - restoring the media playback with 3sec delay")
+        if let webview = (window?.rootViewController as? ViewController)?.webview {
+
+            if #available(iOS 15.0, *) {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3.0) {
+
+                    webview.requestMediaPlaybackState() { currentState in
+                        print("Before pause request: media playback state \(currentState.rawValue)")
+
+                        // func setAllMediaPlaybackSuspended(_ suspended: Bool, completionHandler: (() -> Void)? = nil)
+                        webview.setAllMediaPlaybackSuspended(false) {
+                            webview.requestMediaPlaybackState() { currentState in
+                                print("After pause request: media playback state \(currentState.rawValue)")
+                            }
+                        }
+                    }
+                }
+            } else {
+                // Fallback on earlier versions
+            }
+        }
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+
+        print("sceneDidEnterBackground - suspend media playback after 5sec delay")
+        if let webview = (window?.rootViewController as? ViewController)?.webview {
+
+            if #available(iOS 15.0, *) {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+
+                    webview.requestMediaPlaybackState() { currentState in
+                        print("Before pause request: media playback state \(currentState.rawValue)")
+
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 4.5) {
+
+                            // func setAllMediaPlaybackSuspended(_ suspended: Bool, completionHandler: (() -> Void)? = nil)
+                            webview.setAllMediaPlaybackSuspended(true) {
+                                webview.requestMediaPlaybackState() { currentState in
+                                    print("After pause request: media playback state \(currentState.rawValue)")
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                // Fallback on earlier versions
+            }
+        }
     }
 
 

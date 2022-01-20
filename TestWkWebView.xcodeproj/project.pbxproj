@@ -292,6 +292,9 @@
 				DEVELOPMENT_TEAM = 4XGDRF4ETY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TestWkWebView/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "camera needed";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "microphone needed";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -320,6 +323,9 @@
 				DEVELOPMENT_TEAM = 4XGDRF4ETY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TestWkWebView/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "camera needed";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "microphone needed";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
