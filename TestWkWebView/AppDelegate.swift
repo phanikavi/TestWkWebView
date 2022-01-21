@@ -11,9 +11,15 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate, UISceneDelegate {
 
     var window: UIWindow?
+    var vcsCXManager: VCSCXManager?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        vcsCXManager = VCSCXManager()
+        
         // Override point for customization after application launch.
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 90.0) {
+            self.vcsCXManager?.startCall()
+        }
         return true
     }
 

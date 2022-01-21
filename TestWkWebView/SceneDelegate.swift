@@ -47,6 +47,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             if #available(iOS 15.0, *) {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3.0) {
 
+                    /*
                     webview.requestMediaPlaybackState() { currentState in
                         print("Before pause request: media playback state \(currentState.rawValue)")
 
@@ -57,6 +58,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                             }
                         }
                     }
+                     */
+                    
+                    print("microphone capture state: \(webview.microphoneCaptureState.rawValue) after 3.0sec delay")
                 }
             } else {
                 // Fallback on earlier versions
@@ -75,6 +79,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             if #available(iOS 15.0, *) {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
 
+                    /*
                     webview.requestMediaPlaybackState() { currentState in
                         print("Before pause request: media playback state \(currentState.rawValue)")
 
@@ -87,6 +92,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                 }
                             }
                         }
+                    }
+                     */
+
+                    print("microphone capture state: \(webview.microphoneCaptureState.rawValue) after 0.5sec delay")
+
+                    webview.setMicrophoneCaptureState(.active) {
+                        print("microphoneCaptureState has been set to active")
+                        print("microphone capture state \(webview.microphoneCaptureState.rawValue)")
                     }
                 }
             } else {
